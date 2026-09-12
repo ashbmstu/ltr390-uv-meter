@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" width="900" height="540" role="img" aria-labelledby="t d">
+  <title id="t">UV meter wiring</title>
+  <desc id="d">The LTR390 sensor connects to GPIO4 and GPIO3 on a software I2C bus. The SSD1306 display connects to GPIO7 and GPIO6 on the hardware I2C bus. Both share 3V3 and GND. A Li-ion cell reaches the BAT pads through a slide switch in the positive lead.</desc>
+
+  <rect width="900" height="540" fill="#ffffff"/>
+
+  <g font-family="ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif" fill="#1f2328">
+
+    <!-- wires -->
+    <g stroke-width="2" fill="none">
+      <path d="M225 210 H360 M560 210 H695" stroke="#cf222e"/>
+      <path d="M225 240 H360 M560 240 H695" stroke="#57606a"/>
+      <path d="M225 270 H360 M225 300 H360" stroke="#0969da"/>
+      <path d="M560 270 H695 M560 300 H695" stroke="#8250df"/>
+      <path d="M300 440 H420 V355" stroke="#cf222e"/>
+      <path d="M300 465 H480 V355" stroke="#57606a"/>
+    </g>
+
+    <!-- switch -->
+    <g stroke="#ffffff" stroke-width="6"><path d="M345 440 H405"/></g>
+    <g stroke="#cf222e" stroke-width="2" fill="#ffffff">
+      <circle cx="345" cy="440" r="4"/>
+      <circle cx="405" cy="440" r="4"/>
+      <path d="M345 440 L402 424" fill="none" stroke-linecap="round"/>
+    </g>
+    <text x="375" y="412" font-size="12" text-anchor="middle" fill="#57606a">SPDT slide switch</text>
+
+    <!-- boxes -->
+    <g fill="#ffffff" stroke="#57606a" stroke-width="2">
+      <rect x="50" y="130" width="175" height="195" rx="8"/>
+      <rect x="360" y="100" width="200" height="255" rx="8"/>
+      <rect x="695" y="130" width="175" height="195" rx="8"/>
+      <rect x="140" y="415" width="160" height="75" rx="8"/>
+    </g>
+
+    <!-- titles -->
+    <g text-anchor="middle">
+      <text x="137" y="163" font-size="16" font-weight="600">LTR390</text>
+      <text x="137" y="182" font-size="12" fill="#57606a">UV and light sensor</text>
+      <text x="460" y="133" font-size="16" font-weight="600">XIAO ESP32-C3</text>
+      <text x="460" y="152" font-size="12" fill="#57606a">Seeed Studio</text>
+      <text x="782" y="163" font-size="16" font-weight="600">SSD1306</text>
+      <text x="782" y="182" font-size="12" fill="#57606a">0.96-inch 128×64 OLED</text>
+      <text x="220" y="447" font-size="15" font-weight="600">Li-ion 503035</text>
+      <text x="220" y="466" font-size="12" fill="#57606a">3.7 V, about 500 mAh</text>
+    </g>
+
+    <!-- pin labels -->
+    <g font-size="13" text-anchor="end">
+      <text x="213" y="215">VIN</text>
+      <text x="213" y="245">GND</text>
+      <text x="213" y="275">SCL</text>
+      <text x="213" y="305">SDA</text>
+      <text x="548" y="215">3V3</text>
+      <text x="548" y="245">GND</text>
+      <text x="548" y="275">D5</text>
+      <text x="548" y="305">D4</text>
+    </g>
+    <g font-size="13">
+      <text x="372" y="215">3V3</text>
+      <text x="372" y="245">GND</text>
+      <text x="372" y="275">D2</text>
+      <text x="372" y="305">D1</text>
+      <text x="707" y="215">VCC</text>
+      <text x="707" y="245">GND</text>
+      <text x="707" y="275">SCL</text>
+      <text x="707" y="305">SDA</text>
+    </g>
+    <g font-size="13" text-anchor="middle">
+      <text x="420" y="342">BAT+</text>
+      <text x="480" y="342">BAT−</text>
+    </g>
+
+    <!-- wire labels -->
+    <g font-size="12" text-anchor="middle">
+      <text x="292" y="203" fill="#cf222e">3V3</text>
+      <text x="292" y="233" fill="#57606a">GND</text>
+      <text x="292" y="263" fill="#0969da">GPIO4</text>
+      <text x="292" y="293" fill="#0969da">GPIO3</text>
+      <text x="627" y="203" fill="#cf222e">3V3</text>
+      <text x="627" y="233" fill="#57606a">GND</text>
+      <text x="627" y="263" fill="#8250df">GPIO7</text>
+      <text x="627" y="293" fill="#8250df">GPIO6</text>
+    </g>
+
+    <!-- bus captions -->
+    <g font-size="12" text-anchor="middle" fill="#57606a">
+      <text x="292" y="324">software I²C, 100 kHz</text>
+      <text x="627" y="324">hardware I²C, 400 kHz</text>
+    </g>
+
+    <!-- footnotes -->
+    <g font-size="12" fill="#57606a">
+      <text x="50" y="512">3V3 and GND are single pins on the XIAO — both boards share them.</text>
+      <text x="50" y="530">BAT+ and BAT− are pads on the underside of the XIAO. The switch breaks the positive lead.</text>
+    </g>
+
+  </g>
+</svg>

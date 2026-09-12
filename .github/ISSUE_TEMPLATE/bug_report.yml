@@ -1,0 +1,85 @@
+name: Bug report
+description: Something on a built meter does not work
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filing, please check
+        [docs/troubleshooting.md](https://github.com/ashbmstu/ltr390-uv-meter/blob/main/docs/troubleshooting.md) — it covers
+        dark screens, `Init: FAIL`, and readings that look wrong.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happens
+      description: What is on the screen, word for word, including any error text.
+      placeholder: 'The screen shows "Init: FAIL" and underneath "Failed to find LTR390 sensor".'
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+
+  - type: input
+    id: micropython
+    attributes:
+      label: MicroPython version
+      description: Run `import sys; sys.implementation` at the REPL and paste the result.
+      placeholder: (name='micropython', version=(1, 26, 1), ...)
+    validations:
+      required: true
+
+  - type: input
+    id: sensor
+    attributes:
+      label: LTR390 breakout
+      description: Which board, and where it came from.
+      placeholder: e.g. Adafruit 4831, or a generic purple module from AliExpress
+    validations:
+      required: true
+
+  - type: input
+    id: display
+    attributes:
+      label: OLED module
+      placeholder: e.g. 0.96-inch GM009605, 4-pin I2C, address 0x3C
+    validations:
+      required: true
+
+  - type: dropdown
+    id: power
+    attributes:
+      label: Powered from
+      options:
+        - USB
+        - Battery
+        - Both, and it behaves differently
+    validations:
+      required: true
+
+  - type: textarea
+    id: scan
+    attributes:
+      label: I2C scan
+      description: |
+        From the REPL, with the meter wired up:
+
+        ```python
+        from machine import Pin, SoftI2C, I2C
+        SoftI2C(scl=Pin(4), sda=Pin(3)).scan()
+        I2C(0, scl=Pin(7), sda=Pin(6)).scan()
+        ```
+      render: shell
+
+  - type: textarea
+    id: traceback
+    attributes:
+      label: Console output
+      description: Anything the board printed to Thonny, including a traceback.
+      render: shell

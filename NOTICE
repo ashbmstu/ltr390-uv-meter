@@ -1,0 +1,37 @@
+ltr390-uv-meter
+Copyright (c) 2026 ash and contributors
+
+This project incorporates work from the sources below. This file is not legal
+advice; consult the upstream licences for the authoritative terms.
+
+---
+
+src/ssd1306.py
+
+The MicroPython SSD1306 display driver, carried unmodified so that a board can
+be set up by copying three files and nothing else. Distributed under the MIT
+licence as part of micropython-lib.
+
+    Copyright (c) Damien P. George and contributors
+    https://github.com/micropython/micropython-lib
+
+---
+
+src/ltr390.py
+
+Written for this project, but the register map, the 1400 counts-per-UV-index
+sensitivity constant and the gain and resolution scaling follow Adafruit's
+CircuitPython LTR390 library, which is MIT licensed.
+
+    Copyright (c) 2021 ladyada for Adafruit Industries
+    https://github.com/adafruit/Adafruit_CircuitPython_LTR390
+
+---
+
+The enclosure
+
+The printed case is published separately on Thingiverse under a Creative
+Commons Attribution-ShareAlike licence, which is a different licence from the
+MIT terms covering the firmware in this repository.
+
+    https://www.thingiverse.com/thing:7280742
