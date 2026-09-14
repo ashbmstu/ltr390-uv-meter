@@ -148,11 +148,10 @@ Stated plainly, because they follow from the sensor and will not change:
   across UVA and UVB. The LTR390 sees only UVA and scales it. Outdoors in daylight
   the two track each other closely enough to be useful; under an artificial source
   with a different spectrum they need not agree at all.
-- **There is no calibration step.** The conversion uses one fixed sensitivity figure,
-  not a measurement of your particular sensor against a reference instrument, and
-  that figure is on the generous side (see [docs/measurement.md](docs/measurement.md)).
-  Treat readings as good to a fraction of an index point, not to the two decimal
-  places the screen shows.
+- **There is no calibration step.** The conversion uses the part's rated sensitivity,
+  not a measurement of your particular sensor against a reference instrument. Treat
+  readings as good to a fraction of an index point, not to the two decimal places the
+  screen shows.
 - **No diffuser, so aim matters.** A proper meter has a cosine-corrected diffuser
   that weights light by the angle it arrives from. This has a bare sensor behind a
   hole. Point the window at the sky, and compare readings taken the same way.

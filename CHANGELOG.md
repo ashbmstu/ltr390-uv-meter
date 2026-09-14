@@ -50,6 +50,13 @@ person could reproduce.
   because it would not respond on the hardware controller alongside the display.
   Following the old note produces a meter that never finds its sensor.
 
+### Changed
+
+- **The UV index uses the part's rated sensitivity of 2300 counts per index** at
+  18× gain and 20-bit resolution, the figure Adafruit's driver uses. The bench
+  firmware divided by 1400, so it read about 1.6 times higher than this release
+  does under the same sun.
+
 ### Removed
 
 - `import esp32` and `import machine` from `main.py`, left over from a deep-sleep

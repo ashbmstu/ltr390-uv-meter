@@ -24,16 +24,15 @@ arithmetic follows if you change them.
 ### UV index
 
 ```
-uvi = raw_uvs / (gain_scale × res_scale × 1400)
+uvi = raw_uvs / (gain_scale × res_scale × 2300)
 
   gain_scale = gain / 18            the gain relative to the 18× maximum
   res_scale  = integration / 4      the integration time relative to 20-bit
-  1400                              counts per UV index at 18× gain, 20-bit
-                                    (see the note on this figure below)
+  2300                              rated counts per UV index at 18× gain, 20-bit
 ```
 
-At the defaults that is `3/18 × 1/4 × 1400 = 58.33` counts per UV index, so one
-count is 0.017 of an index point. The screen shows two decimal places; the
+At the defaults that is `3/18 × 1/4 × 2300 = 95.83` counts per UV index, so one
+count is about 0.01 of an index point. The screen shows two decimal places; the
 underlying step is larger than the last digit.
 
 ### Illuminance
@@ -112,12 +111,9 @@ source with a different spectrum — a UV LED, a fluorescent tube, a curing lamp
 the relationship no longer holds and the number should be read as "how much UVA",
 not as a UV index.
 
-**Nothing here is calibrated, and the scale factor is the first thing to
-question.** This firmware divides by 1400 counts per index at 18× gain and 20-bit
-resolution. Adafruit's driver for the same part uses the rated figure of 2300, which
-would make every reading about 40 % lower. The smaller divisor errs towards reporting
-more UV, which is the safer direction for a sun meter, but it does mean the absolute
-number is an estimate. `_UV_SENSITIVITY` at the top of
+**Nothing here is calibrated.** The 2300 counts-per-index figure is the part's
+rated sensitivity, the same one Adafruit's driver uses, not a measurement of the
+sensor in your hand. `_UV_SENSITIVITY` at the top of
 [`src/ltr390.py`](../src/ltr390.py) is the one line to change once you have compared
 the meter against a reference instrument. Beyond that, part-to-part spread, the angle
 you hold it at and the state of the hole in the case all move the result.

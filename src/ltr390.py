@@ -10,10 +10,9 @@ _LTR390_MAIN_CTRL, _LTR390_MEAS_RATE, _LTR390_GAIN = 0x00, 0x04, 0x05
 _LTR390_PART_ID, _LTR390_MAIN_STATUS = 0x06, 0x07
 _LTR390_ALSDATA_LSB, _LTR390_UVSDATA_LSB = 0x0D, 0x10
 
-# Counts per UV index at 18x gain and 20-bit resolution. Adafruit's driver uses
-# the rated 2300; this firmware keeps the 1400 it was built and used with, which
-# reads about 1.6x higher. See docs/measurement.md before changing it.
-_UV_SENSITIVITY = 1400
+# Rated counts per UV index at 18x gain and 20-bit resolution, as used by
+# Adafruit's driver. See docs/measurement.md before changing it.
+_UV_SENSITIVITY = 2300
 
 
 class LTR390:
