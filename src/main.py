@@ -1,7 +1,7 @@
 # main.py - UV index and illuminance meter on a Seeed XIAO ESP32-C3.
 #
-# Reads the LTR390 twice a second and draws both values on a 128x64 SSD1306
-# OLED at double size. There is no power management: the battery is switched
+# Reads the LTR390 about once a second and draws both values on a 128x64
+# SSD1306 OLED at double size. There is no power management: the battery is switched
 # by hand.
 
 import time
@@ -46,8 +46,8 @@ sensor = None
 oled = None
 
 try:
-    sensor = LTR390(i2c_sensor)
     oled = SSD1306_I2C(OLED_WIDTH, OLED_HEIGHT, i2c_display)
+    sensor = LTR390(i2c_sensor)
     oled.fill(0)
     oled.text("Init: OK", 0, 0)
     oled.show()

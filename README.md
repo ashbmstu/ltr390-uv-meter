@@ -78,6 +78,10 @@ The top line is the UV index, on the same scale weather forecasts use.
 | **8 – 10** | Very high | Cover up properly. Skin burns quickly |
 | **11 +** | Extreme | Stay out of the sun. Unprotected skin burns in minutes |
 
+The bands and the advice are the standard UV index scale, not a property of this
+meter. It estimates the index from UVA alone and is not a calibrated instrument, so
+use it to compare and to prompt, not to decide how long skin can safely be exposed.
+
 Indoors you will usually see `0.00`. A bright overcast day gives one or two. Clear
 summer sun in northern Europe reaches six or seven; the tropics and high mountains
 go past eleven.
@@ -144,10 +148,11 @@ Stated plainly, because they follow from the sensor and will not change:
   across UVA and UVB. The LTR390 sees only UVA and scales it. Outdoors in daylight
   the two track each other closely enough to be useful; under an artificial source
   with a different spectrum they need not agree at all.
-- **There is no calibration step.** The conversion uses the sensitivity figure from
-  the datasheet, not a measurement of your particular sensor against a reference
-  instrument. Treat readings as good to a fraction of an index point, not to the two
-  decimal places the screen shows.
+- **There is no calibration step.** The conversion uses one fixed sensitivity figure,
+  not a measurement of your particular sensor against a reference instrument, and
+  that figure is on the generous side (see [docs/measurement.md](docs/measurement.md)).
+  Treat readings as good to a fraction of an index point, not to the two decimal
+  places the screen shows.
 - **No diffuser, so aim matters.** A proper meter has a cosine-corrected diffuser
   that weights light by the angle it arrives from. This has a bare sensor behind a
   hole. Point the window at the sky, and compare readings taken the same way.

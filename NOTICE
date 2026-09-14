@@ -1,5 +1,5 @@
 ltr390-uv-meter
-Copyright (c) 2026 ash and contributors
+Copyright (c) 2026 ASH and contributors
 
 This project incorporates work from the sources below. This file is not legal
 advice; consult the upstream licences for the authoritative terms.
@@ -19,9 +19,10 @@ licence as part of micropython-lib.
 
 src/ltr390.py
 
-Written for this project, but the register map, the 1400 counts-per-UV-index
-sensitivity constant and the gain and resolution scaling follow Adafruit's
-CircuitPython LTR390 library, which is MIT licensed.
+Written for this project, but the register map and the gain and resolution
+scaling follow Adafruit's CircuitPython LTR390 library, which is MIT licensed.
+The sensitivity constant does not: this firmware uses 1400 counts per UV index
+where Adafruit's library uses the rated 2300.
 
     Copyright (c) 2021 ladyada for Adafruit Industries
     https://github.com/adafruit/Adafruit_CircuitPython_LTR390

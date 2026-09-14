@@ -10,7 +10,9 @@ _LTR390_MAIN_CTRL, _LTR390_MEAS_RATE, _LTR390_GAIN = 0x00, 0x04, 0x05
 _LTR390_PART_ID, _LTR390_MAIN_STATUS = 0x06, 0x07
 _LTR390_ALSDATA_LSB, _LTR390_UVSDATA_LSB = 0x0D, 0x10
 
-# Counts per UV index at 18x gain and 20-bit resolution, from the datasheet.
+# Counts per UV index at 18x gain and 20-bit resolution. Adafruit's driver uses
+# the rated 2300; this firmware keeps the 1400 it was built and used with, which
+# reads about 1.6x higher. See docs/measurement.md before changing it.
 _UV_SENSITIVITY = 1400
 
 
@@ -76,7 +78,8 @@ class LTR390:
         return self._read_register(_LTR390_GAIN)[0] & 0x07
 
     def set_resolution(self, resolution):
-        self._write_register(_LTR390_MEAS_RATE, resolution << 4)
+        reg = self._read_register(_LTR390_MEAS_RATE)[0] & ~0x70
+        self._write_register(_LTR390_MEAS_RATE, reg | ((resolution & 0x07) << 4))
 
     def get_resolution(self):
         return (self._read_register(_LTR390_MEAS_RATE)[0] >> 4) & 0x07
@@ -87,6 +90,13 @@ class LTR390:
     def _read_20bit_data(self, lsb_reg):
         data = self._read_register(lsb_reg, 3)
         return data[0] | (data[1] << 8) | ((data[2] & 0x0F) << 16)
+
+    def _wait_for_data(self, timeout_ms=1000):
+        deadline = time.ticks_add(time.ticks_ms(), timeout_ms)
+        while not self.new_data_available():
+            if time.ticks_diff(deadline, time.ticks_ms()) <= 0:
+                raise RuntimeError("LTR390 timed out waiting for data")
+            time.sleep_ms(30)
 
     def read_all_channels(self):
         """Return (uv_index, lux, raw_uvs, raw_als)."""
@@ -103,9 +113,7 @@ class LTR390:
         # the previous mode satisfies the wait instantly and the value returned
         # is the other channel's.
         self._read_register(_LTR390_MAIN_STATUS)
-
-        while not self.new_data_available():
-            time.sleep_ms(30)
+        self._wait_for_data()
         raw_uvs = self._read_20bit_data(_LTR390_UVSDATA_LSB)
 
         gain_scale = gain_val / self._gain_factor[self.GAIN_18]
@@ -115,9 +123,7 @@ class LTR390:
 
         self.set_mode(self.ALS_MODE)
         self._read_register(_LTR390_MAIN_STATUS)
-
-        while not self.new_data_available():
-            time.sleep_ms(30)
+        self._wait_for_data()
         raw_als = self._read_20bit_data(_LTR390_ALSDATA_LSB)
 
         denominator = gain_val * res_val

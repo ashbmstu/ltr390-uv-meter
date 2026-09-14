@@ -29,6 +29,7 @@ uvi = raw_uvs / (gain_scale × res_scale × 1400)
   gain_scale = gain / 18            the gain relative to the 18× maximum
   res_scale  = integration / 4      the integration time relative to 20-bit
   1400                              counts per UV index at 18× gain, 20-bit
+                                    (see the note on this figure below)
 ```
 
 At the defaults that is `3/18 × 1/4 × 1400 = 58.33` counts per UV index, so one
@@ -111,10 +112,15 @@ source with a different spectrum — a UV LED, a fluorescent tube, a curing lamp
 the relationship no longer holds and the number should be read as "how much UVA",
 not as a UV index.
 
-**Nothing here is calibrated.** The 1400 counts-per-index figure is the datasheet's
-nominal sensitivity for the part, not a measurement of the sensor in your hand.
-Part-to-part spread, the angle you hold it at and the state of the hole in the case
-all move the result.
+**Nothing here is calibrated, and the scale factor is the first thing to
+question.** This firmware divides by 1400 counts per index at 18× gain and 20-bit
+resolution. Adafruit's driver for the same part uses the rated figure of 2300, which
+would make every reading about 40 % lower. The smaller divisor errs towards reporting
+more UV, which is the safer direction for a sun meter, but it does mean the absolute
+number is an estimate. `_UV_SENSITIVITY` at the top of
+[`src/ltr390.py`](../src/ltr390.py) is the one line to change once you have compared
+the meter against a reference instrument. Beyond that, part-to-part spread, the angle
+you hold it at and the state of the hole in the case all move the result.
 
 **Comparisons are far better than absolutes.** Sun against shade, with sunglasses
 against without, this lamp against that lamp — all of those are trustworthy,
